@@ -9,40 +9,46 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class PersonServiceImpl extends BaseServiceImpl<Person> implements PersonService {
-	
+
 	@Override
-    public Person salvar(@Valid Person obj) throws Exception {
-        try {
-        	if (obj.getName().equals("")  && obj.getName().isBlank() ) {
-                throw new Exception("Name is mandatory!");
-            }
+	public Person salvar(@Valid Person obj) throws Exception {
+		try {
+			if (obj.getName().equals("") && obj.getName().isBlank()) {
+				throw new Exception("Name is mandatory!");
+			}
 
-            if (obj.getCpf().equals("")  && obj.getCpf().isBlank() ) {
-                throw new Exception("CPF is mandatory!");
-            }
+			if (obj.getCpf().equals("") && obj.getCpf().isBlank()) {
+				throw new Exception("CPF is mandatory!");
+			}
 
-            if (!ValidaDocumentUtil.isValidCPF(obj.getCpf())) {
-                throw new Exception("CPF not valid!");
-            }
-            
-            if(obj.getId() == null){
-            	obj.setDateRegistration(new Date());
-            } 
-            
-            Person person = baseRepository.findByCpf(obj.getCpf());
-            System.out.println(person);
-            if(person != null) {
-                   throw new Exception("CPF already registered!");
-            }
-          
-            obj.setDateUpdate(new Date());
-            
-            return baseRepository.save(obj);
-        } catch (Exception e ) {
-            throw new Exception(e.getMessage());
-        }
-    }
+			if (!ValidaDocumentUtil.isValidCPF(obj.getCpf())) {
+				throw new Exception("CPF not valid!");
+			}
+
+			if (obj.getId() == null) {
+				obj.setDateRegistration(new Date());
+			}
+
+			Person person = baseRepository.findByCpf(obj.getCpf());
+			System.out.println(person);
+			if (person != null) {
+				throw new Exception("CPF already registered!");
+			}
+
+			obj.setDateUpdate(new Date());
+
+			return baseRepository.save(obj);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+
+	public String source() {
+		return "<h2><a href='https://github.com/msitoni/desafio-tecnico'>https://github.com/msitoni/desafio-tecnico<a><h2>";
+	}
+
 }

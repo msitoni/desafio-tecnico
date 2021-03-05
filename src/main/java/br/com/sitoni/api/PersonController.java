@@ -1,16 +1,14 @@
 package br.com.sitoni.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import br.com.sitoni.application.PersonApplication;
 import br.com.sitoni.domain.dto.PersonDTO;
 import br.com.sitoni.domain.entity.Person;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "person")
@@ -25,6 +23,12 @@ public class PersonController extends BaseController<PersonDTO, Person>{
         return "<h1>HelloWorld2<h1>";
     }
 
+    @GetMapping("/source")
+    public String source() {
+    	System.out.println(personApplication.source());
+		return personApplication.source();
+    }
+    
     /*@PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("Salva um novo cliente")

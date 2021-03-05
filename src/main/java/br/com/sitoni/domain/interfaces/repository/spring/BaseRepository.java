@@ -1,12 +1,10 @@
 package br.com.sitoni.domain.interfaces.repository.spring;
 
-import br.com.sitoni.domain.entity.BaseEntity;
-import br.com.sitoni.domain.entity.Person;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
-import java.util.Optional;
+import br.com.sitoni.domain.entity.BaseEntity;
+import br.com.sitoni.domain.entity.Person;
 
 
 @NoRepositoryBean
