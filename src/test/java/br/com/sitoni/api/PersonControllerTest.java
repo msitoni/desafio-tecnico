@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @AutoConfigureMockMvc
 public class PersonControllerTest {
 
-static String PERSON_API = "/person";
+	static String PERSON_API = "/person";
 	
 	@Autowired
 	MockMvc mvc;
