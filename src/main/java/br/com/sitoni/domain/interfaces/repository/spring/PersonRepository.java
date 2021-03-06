@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PersonRepository extends BaseRepository<Person>{
-	String source();
+	//String source();
 }
